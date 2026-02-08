@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Loja Virtual</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h2>Bem-vindo à Loja!</h2>
+<a href="/cart" class="cart-btn">Ver Carrinho</a>
+<a href="/login" class="cart-btn">Login Admin</a>
+
+<div class="products">
+{% for product in products %}
+<div class="product-card">
+<img src="/static/uploads/{{ product.image }}" alt="{{ product.name }}">
+<h3>{{ product.name }}</h3>
+<p>R$ {{ "%.2f"|format(product.price) }}</p>
+<p class="stock">Estoque: {{ product.stock }}</p>
+<a href="/add-to-cart/{{ product.id }}" class="buy-btn">Adicionar ao Carrinho</a>
+</div>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>

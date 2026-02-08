@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Loja</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h2>Admin - Cadastrar Produto</h2>
+<form method="post" enctype="multipart/form-data">
+<input type="text" name="name" placeholder="Nome do produto" required>
+<input type="number" name="price" placeholder="Preço" required step="0.01">
+<input type="number" name="stock" placeholder="Estoque" required min="0">
+<input type="file" name="image" required>
+<button type="submit">Cadastrar Produto</button>
+</form>
+
+<a href="/" class="cart-btn">Voltar à Loja</a>
+<a href="/logout" class="cart-btn">Sair</a>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+{% for msg in messages %}
+<li class="flash flash-success">{{ msg }}</li>
+{% endfor %}
+</ul>
+{% endif %}{% endwith %}
+
+<h3>Produtos cadastrados:</h3>
+<div class="products">
+{% for product in products %}
+<div class="product-card">
+<img src="/static/uploads/{{ product.image }}" alt="{{ product.name }}">
+<h3>{{ product.name }}</h3>
+<p>R$ {{ "%.2f"|format(product.price) }}</p>
+<p class="stock">Estoque: {{ product.stock }}</p>
+</div>
+{% endfor %}
+</div>
+</div>
+</body>
+</html>

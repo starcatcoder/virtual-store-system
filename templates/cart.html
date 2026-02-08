@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Carrinho</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h2>Carrinho</h2>
+{% if cart %}
+<table class="cart-table">
+<tr><th>Produto</th><th>Preço</th><th>Quantidade</th><th>Subtotal</th><th>Remover</th></tr>
+{% for pid, item in cart.items() %}
+<tr>
+<td><img src="/static/uploads/{{ item.image }}"> {{ item.name }}</td>
+<td>R$ {{ "%.2f"|format(item.price) }}</td>
+<td>{{ item.qty }}</td>
+<td>R$ {{ "%.2f"|format(item.price*item.qty) }}</td>
+<td><a class="remove-btn" href="/remove/{{ pid }}">X</a></td>
+</tr>
+{% endfor %}
+<tr>
+<td colspan="3"><strong>Total:</strong></td>
+<td colspan="2">R$ {{ "%.2f"|format(total) }}</td>
+</tr>
+</table>
+{% else %}
+<p>Seu carrinho está vazio.</p>
+{% endif %}
+<a href="/" class="buy-btn">Voltar à Loja</a>
+</div>
+</body>
+</html>

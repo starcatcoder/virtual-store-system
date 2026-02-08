@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Admin</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+<h2>Login Admin</h2>
+<form method="post">
+<input type="text" name="username" placeholder="Usuário" required>
+<input type="password" name="password" placeholder="Senha" required>
+<button type="submit">Entrar</button>
+</form>
+<a href="/" class="cart-btn">Voltar à Loja</a>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+{% for msg in messages %}
+<li class="flash flash-error">{{ msg }}</li>
+{% endfor %}
+</ul>
+{% endif %}{% endwith %}
+</div>
+</body>
+</html>
